@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Video Play & Show it Using Modal</title>
+
+	<style type="text/css">
+		
+		/* The Modal (background) */
+                    .modal-me {
+                        display: none; /* Hidden by default */
+                        position: fixed; /* Stay in place */
+                        z-index: 999; /* Sit on top */
+                        padding-top: 100px; /* Location of the box */
+                        left: 0;
+                        top: 0;
+                        width: 100%; /* Full width */
+                        height: 100%; /* Full height */
+                        overflow: auto; /* Enable scroll if needed */
+                        background-color: rgb(0,0,0); /* Fallback color */
+                        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                    }
+
+                    /* Modal Content */
+                    .modal-me-content {
+                        background-color: #fefefe;
+                        margin: auto;
+                        padding: 20px;
+                        border: 1px solid #888;
+                        width: auto;
+                        text-align: center;
+                    }
+
+                    /* The Close Button */
+                    .close-me {
+                        color: #aaaaaa;
+                        float: right;
+                        font-size: 28px;
+                        font-weight: bold;
+                    }
+
+                    .close-me:hover,
+                    .close-me:focus {
+                        color: #000;
+                        text-decoration: none;
+                        cursor: pointer;
+                    }
+	</style>
+</head>
+<body>
+
+	<!--  In this Repository i have used  html, css and javascript to make custom Modal and play Video in it. and when we will close the Modal the video will stop.  -->
+
+
+
+
+
+
+
+		<button id="myBtn"></button>
+        <!-- The Modal -->
+        <div id="Video_Modal" class="modal-me">
+
+              <!-- Modal content -->
+             <div class="modal-me-content">
+
+                <span class="close-me">&times;</span>
+                 <video class="full-V" id="webinarVideoModal"   playsinline controls autoplay="" preload="true" controlsList="nodownload" >
+                     <source src="" id="videoSrc" type="video/mp4">
+                                        <!-- <source src="./webinar vlady/webinar1.ogg" type="video/ogg"> -->
+                     <h2> Your browser does not support the video tag</h2>
+                   </video>
+              </div>
+
+            </div>
+
+		<script >
+            // Get the modal
+            var modal_me = document.getElementById('Video_Modal');
+
+            var btn = document.getElementById('myBtn');
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close-me")[0];
+
+            
+
+            // This function is used to play the video and show the modal
+            btn.onclick = function(){
+            	run_modal();
+            }
+
+
+
+            //  Display Modal and play the video
+
+            function run_modal(){
+                modal_me.style.display = "block";
+                var vidM = document.getElementById("webinarVideoModal");
+                vidM.canPlayType("video/mp4");
+                vidM.src = "./webinar vlady/webinar1.mp4";  //put url of video 
+                vidM.load();
+            }
+
+
+            //function to close vide 
+            function stop_modal(){
+                
+                var vidM = document.getElementById("webinarVideoModal");
+                vidM.canPlayType("video/mp4");
+                vidM.src = ""; // leave it empty to remove th url of currently running video
+                
+                vidM.pause();  // u can use pause or stop 
+                vidM.stopVideo();
+                vidM.currentTime = 0;
+            }
+
+            
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+                modal_me.style.display = "none";
+                stop_modal();
+                 
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal_me.style.display = "none";
+                    stop_modal();
+                }
+            }
+
+
+            
+		</script>
+
+</body>
+</html>
